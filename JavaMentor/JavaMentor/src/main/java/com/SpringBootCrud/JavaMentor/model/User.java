@@ -10,6 +10,7 @@ import java.util.Set;
 @Entity
 @Table(name = "t_users")
 public class User implements UserDetails {
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
@@ -17,8 +18,39 @@ public class User implements UserDetails {
     private String name;
     @Column(name = "password")
     private String password;
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Role> roles;
+
+    @Column(name = "age")
+    private Long age;
+    @Column(name = "lastName")
+    private String lastName;
+    @Column(name = "email")
+    private String email;
+
+    public Long getAge() {
+        return age;
+    }
+
+    public void setAge(Long age) {
+        this.age = age;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public User() {
     }
@@ -30,6 +62,14 @@ public class User implements UserDetails {
     public User(String name, String password) {
         this.name = name;
         this.password = password;
+    }
+
+    public User(String name, String password, Set<Role> roles, Long age, String lastName, String email) {
+        this.name = name;
+        this.password = password;
+        this.age = age;
+        this.lastName = lastName;
+        this.email = email;
     }
 
     @Override
