@@ -77,10 +77,4 @@ public class AdminController {
         userService.saveUser(user);
         return "redirect:/admin";
     }
-
-   @GetMapping("/findOne")
-   @ResponseBody
-   public User findOne(Long id) {
-        return userService.findByID(id);
-   }
 }
