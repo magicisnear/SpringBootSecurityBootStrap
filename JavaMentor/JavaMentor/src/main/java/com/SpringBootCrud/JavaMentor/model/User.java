@@ -18,7 +18,7 @@ public class User implements UserDetails {
     private String name;
     @Column(name = "password")
     private String password;
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY)
     private Set<Role> roles;
 
     @Column(name = "age")
@@ -27,6 +27,27 @@ public class User implements UserDetails {
     private String lastName;
     @Column(name = "email")
     private String email;
+
+
+    public User() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public User(String name, String password) {
+        this.name = name;
+        this.password = password;
+    }
+
+    public User(String name, String password, Set<Role> roles, Long age, String lastName, String email) {
+        this.name = name;
+        this.password = password;
+        this.age = age;
+        this.lastName = lastName;
+        this.email = email;
+    }
 
     public Long getAge() {
         return age;
@@ -50,37 +71,6 @@ public class User implements UserDetails {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public User() {
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public User(String name, String password) {
-        this.name = name;
-        this.password = password;
-    }
-
-    public User(String name, String password, Set<Role> roles, Long age, String lastName, String email) {
-        this.name = name;
-        this.password = password;
-        this.age = age;
-        this.lastName = lastName;
-        this.email = email;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", password='" + password + '\'' +
-                ", passwordConfirm='" +
-                ", roles=" + roles +
-                '}';
     }
 
     public void setName(String name) {
@@ -141,5 +131,18 @@ public class User implements UserDetails {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", roles=" + roles +
+                ", age=" + age +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

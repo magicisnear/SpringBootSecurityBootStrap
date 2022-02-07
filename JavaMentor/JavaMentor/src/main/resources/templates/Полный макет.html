@@ -99,10 +99,7 @@
                                                 <td th:text="${user.email}"></td>
                                                 <td th:text="${user.roles}"></td>
                                                 <td>
-                                                    <a th:href="@{/admin/update/{id}(id=${user.id})}"
-                                                       class="btn btn-primary eBtn">
-                                                        Edit </a>
-                                                </td>
+                                                    <a th:href="@{/admin/findOne/(id=${user.id})}" class="btn btn-primary eBtn"> Edit </a> </td>
                                                 <td>
                                                     <a th:href="@{/admin/delete/{id}(id=${user.id})}"
                                                        class="btn btn-danger nBtn"
@@ -233,67 +230,69 @@
 
 
 <!--1-ое модальное окно -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-    <form action="#" th:action="@{/admin/update}" method="POST">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit user</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+<div class="myForm">
+    <form action="#" th:action="@{/admin/save}" method="POST">
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit user</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <fieldset disabled>
+                                <label for="idEdit" class="col-form-label">ID</label>
+                                <input type="text" class="form-control" id="idEdit" name="idEdit" value=""/>
+                            </fieldset>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="firstNameEdit" class="col-form-label">First Name</label>
+                            <input type="text" class="form-control" id="firstNameEdit" name="firstNameEdit" value=""/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lastNameEdit" class="col-form-label">Last Name</label>
+                            <input type="text" class="form-control" id="lastNameEdit" name="lastNameEdit" value=""/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ageEdit" class="col-form-label">Age</label>
+                            <input type="text" class="form-control" id="ageEdit" name="ageEdit" value=""/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="emailEdit" class="col-form-label">Email</label>
+                            <input type="text" class="form-control" id="emailEdit" name="emailEdit" value=""/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="passwordEdit" class="col-form-label">Password</label>
+                            <input type="text" class="form-control" id="passwordEdit" name="passwordEdit" value=""/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="roleEdit" class="col-form-label">Role</label>
+                            <select multiple class="form-control" id="roleEdit" name="roleEdit" value=""/>
+                                <option>ROLE_USER</option>
+                                <option>ROLE_ADMIN</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <input type="submit" value="Update User" class="btn btn-info"/>
+                    </div>
+
                 </div>
-
-                <div class="modal-body">
-
-                    <div class="form-group">
-                        <fieldset disabled>
-                            <label for="recipient-name1" class="col-form-label">ID</label>
-                            <input type="text" class="form-control" id="recipient-name1">
-                        </fieldset>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="recipient-name2" class="col-form-label">First Name</label>
-                        <input type="text" class="form-control" id="recipient-name2">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="recipient-name3" class="col-form-label">Last Name</label>
-                        <input type="text" class="form-control" id="recipient-name3">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="recipient-name4" class="col-form-label">Age</label>
-                        <input type="text" class="form-control" id="recipient-name4">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="recipient-name5" class="col-form-label">Email</label>
-                        <input type="text" class="form-control" id="recipient-name5">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="recipient-name6" class="col-form-label">Password</label>
-                        <input type="text" class="form-control" id="recipient-name6">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="recipient-name7" class="col-form-label">Role</label>
-                        <select multiple class="form-control" id="recipient-name7">
-                            <option>ROLE_USER</option>
-                            <option>ROLE_ADMIN</option>
-                        </select>
-                    </div>
-
-                </div>
-
-                     <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <input type="submit" value="Update User" class="btn btn-info"/>
-                </div>
-
             </div>
         </div>
     </form>

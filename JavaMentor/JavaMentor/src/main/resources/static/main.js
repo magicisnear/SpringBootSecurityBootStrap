@@ -6,19 +6,22 @@ $('document').ready(function () {
         event.preventDefault();
         var href = $(this).attr('href');
 
-        $.get(href, function (user) {
-            $('#recipient-name2').val(user.name);
-            $('#recipient-name3').val(user.lastName);
-            $('#recipient-name4').val(user.age);
-            $('#recipient-name5').val(user.email);
-            $('#recipient-name6').val(user.password);
-            $('#recipient-name7').val(user.role);
+        $.get(href, function (user, status) {
+            $('.myForm #firstNameEdit').val(user.name);
+            $('.myForm #lastNameEdit').val(user.lastName);
+            $('.myForm #ageEdit').val(user.age);
+            $('.myForm #emailEdit').val(user.email);
+            $('.myForm #passwordEdit').val(user.password);
+            $('.myForm #roleEdit').val(user.role);
         });
 
-        $('#exampleModal').modal();
+        $('.myForm #exampleModal').modal();
     });
 
 
 
 
 });
+
+
+
