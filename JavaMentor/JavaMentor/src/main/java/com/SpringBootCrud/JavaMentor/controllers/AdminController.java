@@ -83,7 +83,7 @@ public class AdminController {
     @PostMapping("/admin/save")
     public String save(User user) {
         userService.saveUser(user);
-        return "redirect:/login";
+        return "redirect:/new";
     }
 
     @GetMapping("/admin/delete")

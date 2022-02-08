@@ -36,12 +36,19 @@ public class User implements UserDetails {
         return name;
     }
 
-    public User(String name, String password) {
+
+    public User(Long id, String name, String password, Set<Role> roles, Long age, String lastName, String email) {
+        this.id = id;
         this.name = name;
         this.password = password;
+        this.roles = roles;
+        this.age = age;
+        this.lastName = lastName;
+        this.email = email;
     }
 
-    public User(String name, String password, Set<Role> roles, Long age, String lastName, String email) {
+    public User(Long id, String name, String password,Long age, String lastName, String email) {
+        this.id = id;
         this.name = name;
         this.password = password;
         this.age = age;

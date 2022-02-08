@@ -7,12 +7,13 @@ $('document').ready(function () {
         var href = $(this).attr('href');
 
         $.get(href, function (user, status) {
-            $('.myForm #firstNameEdit').val(user.name);
-            $('.myForm #lastNameEdit').val(user.lastName);
-            $('.myForm #ageEdit').val(user.age);
-            $('.myForm #emailEdit').val(user.email);
-            $('.myForm #passwordEdit').val(user.password);
-            $('.myForm #roleEdit').val(user.role);
+            $('.myForm #id').val(user.id);
+            $('.myForm #Username').val(user.name);
+            $('.myForm #lastName').val(user.lastName);
+            $('.myForm #age').val(user.age);
+            $('.myForm #email').val(user.email);
+            $('.myForm #password').val(user.password);
+            $('.myForm #role').val(user.role);
         });
 
         $('.myForm #exampleModal').modal();
