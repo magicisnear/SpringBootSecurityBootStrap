@@ -13,7 +13,7 @@ $('document').ready(function () {
             $('.myForm #age').val(user.age);
             $('.myForm #email').val(user.email);
             $('.myForm #password').val(user.password);
-            $('.myForm #role').val(user.role);
+            $('.myForm #roles').val(user.roles);
         });
 
         $('.myForm #exampleModal').modal();

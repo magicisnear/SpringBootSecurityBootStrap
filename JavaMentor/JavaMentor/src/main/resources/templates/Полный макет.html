@@ -277,21 +277,14 @@
 
                         <div class="form-group">
                             <label for="roles" class="col-form-label">Role</label>
-                            <select multiple class="form-control" id="roles" name="roles" value=""/>
-                            <option>ROLE_USER</option>
-                            <option>ROLE_ADMIN</option>
+                            <select class="form-control selectpicker" id="roles" name="roles" value="" multiple>
+                                <option th:each="role: ${setRoles}"
+                                        th:value="${role.id}"
+                                        th:text="${role.name}">
+                                </option>
                             </select>
                         </div>
-
                     </div>
-
-                    <div class="form-group">
-                            <label for="role" class="col-form-label">Role</label>
-                            <select multiple class="form-control" id="role" name="role" value=""/>
-                                <option>ROLE_USER</option>
-                                <option>ROLE_ADMIN</option>
-                            </select>
-                        </div>
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
