@@ -103,7 +103,7 @@
                                                        class="btn btn-primary eBtn"> Edit </a>
                                                 </td>
                                                 <td>
-                                                    <a th:href="@{/admin/delete/(id=${user.id})}"
+                                                    <a th:href="@{/admin/findOne/(id=${user.id})}"
                                                        class="btn btn-danger delBtn"> Delete </a>
                                                 </td>
                                                 </td>
@@ -300,68 +300,69 @@
 
 
 <!--2-ое модальное окно -->
-        <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1"
-             aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel1">Delete user</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+<div class="myForm1">
+    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel1">Delete user</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="id" class="col-form-label">id</label>
+                        <input readonly type="text" class="form-control" id="id" name="id" value=""/>
                     </div>
 
-                    <div class="modal-body">
-
-                        <div class="form-group">
-                            <label for="id" class="col-form-label">id</label>
-                            <input readonly type="text" class="form-control" id="id" name="id" value=""/>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="Username" class="col-form-label">Username</label>
-                            <input readonly type="text" class="form-control" id="Username" name="name" value=""/>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="lastName" class="col-form-label">lastName</label>
-                            <input readonly type="text" class="form-control" id="lastName" name="lastName" value=""/>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="age" class="col-form-label">age</label>
-                            <input readonly type="text" class="form-control" id="age" name="age" value=""/>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="email" class="col-form-label">email</label>
-                            <input readonly type="text" class="form-control" id="email" name="email" value=""/>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="password" class="col-form-label">password</label>
-                            <input readonly type="text" class="form-control" id="password" name="password" value=""/>
-                        </div>
-
-                        <div class="form-check disabled">
-                            <label for="roles" class="col-form-label">Role</label>
-                            <select  class="form-control selectpicker" id="roles" name="roles" value="" multiple>
-                                <option th:each="role: ${setRoles}"
-                                        th:value="${role.id}"
-                                        th:text="${role.name}" disabled>
-                                </option>
-                            </select>
-                        </div>
+                    <div class="form-group">
+                        <label for="Username" class="col-form-label">Username</label>
+                        <input readonly type="text" class="form-control" id="Username" name="name" value=""/>
                     </div>
 
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <a href="" class="btn btn-danger" id="delRef">Delete</a>
+                    <div class="form-group">
+                        <label for="lastName" class="col-form-label">lastName</label>
+                        <input readonly type="text" class="form-control" id="lastName" name="lastName" value=""/>
                     </div>
+
+                    <div class="form-group">
+                        <label for="age" class="col-form-label">age</label>
+                        <input readonly type="text" class="form-control" id="age" name="age" value=""/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="col-form-label">email</label>
+                        <input readonly type="text" class="form-control" id="email" name="email" value=""/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" class="col-form-label">password</label>
+                        <input readonly type="text" class="form-control" id="password" name="password" value=""/>
+                    </div>
+
+                    <div class="form-check disabled">
+                        <label for="roles" class="col-form-label">Role</label>
+                        <select class="form-control selectpicker" id="roles" name="roles" value="" multiple>
+                            <option th:each="role: ${setRoles}"
+                                    th:value="${role.id}"
+                                    th:text="${role.name}" disabled>
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <a href="" class="btn btn-danger" id="delRef">Delete</a>
                 </div>
             </div>
         </div>
-
+    </div>
+</div>
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

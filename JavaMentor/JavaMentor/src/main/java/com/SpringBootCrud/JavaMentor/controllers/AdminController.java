@@ -25,7 +25,7 @@ public class AdminController {
     private UserService userService;
 
     @GetMapping("/new")
-    public String newPage(@AuthenticationPrincipal User user1,Model model) {
+    public String newPage(@AuthenticationPrincipal User user1, Model model) {
         List<User> users = userService.findAll();
         model.addAttribute("users", users); // список юзеров
         model.addAttribute("user1", user1); // текущий авторизированный пользователь
@@ -54,7 +54,7 @@ public class AdminController {
         if (userFromDB == null) {
             userService.saveUser(user);
         }
-      return "redirect:/admin";
+        return "redirect:/admin";
     }
 
     @GetMapping("/admin/delete/{id}")
@@ -87,7 +87,9 @@ public class AdminController {
     }
 
     @GetMapping("/admin/delete")
-    public String delete(Long id) {
+    public String delete(Long id, Model model) {
+        User user = userService.findByID(id);
+        model.addAttribute("user", user);
         userService.deleteById(id);
         return "redirect:/new";
     }
