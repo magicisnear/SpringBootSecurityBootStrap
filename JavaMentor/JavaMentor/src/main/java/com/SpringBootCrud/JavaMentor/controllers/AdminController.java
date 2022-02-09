@@ -54,13 +54,13 @@ public class AdminController {
         if (userFromDB == null) {
             userService.saveUser(user);
         }
-        return "redirect:/admin";
+        return "redirect:/new";
     }
 
     @GetMapping("/admin/delete/{id}")
     public String deleteUser(@PathVariable("id") Long id) {
         userService.deleteById(id);
-        return "redirect:/admin";
+        return "redirect:/new";
     }
 
     @GetMapping("/admin/update/{id}")
@@ -75,7 +75,7 @@ public class AdminController {
     @PostMapping("/admin/update")
     public String updateUser(User user) {
         userService.saveUser(user);
-        return "redirect:/admin";
+        return "redirect:/new";
     }
 
     //add method for new Site
@@ -86,10 +86,8 @@ public class AdminController {
         return "redirect:/new";
     }
 
-    @GetMapping("/admin/delete")
+    @PostMapping("/admin/delete")
     public String delete(Long id, Model model) {
-        User user = userService.findByID(id);
-        model.addAttribute("user", user);
         userService.deleteById(id);
         return "redirect:/new";
     }

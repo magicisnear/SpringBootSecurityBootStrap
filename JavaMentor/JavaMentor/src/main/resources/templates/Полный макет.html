@@ -301,6 +301,7 @@
 
 <!--2-ое модальное окно -->
 <div class="myForm1">
+    <form action="#" th:action="@{/admin/delete}" method="POST">
     <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -357,11 +358,12 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <a href="" class="btn btn-danger" id="delRef">Delete</a>
+                    <input type="submit" value="Delete User" class="btn btn-danger"/>
                 </div>
             </div>
         </div>
     </div>
+    </form>
 </div>
 
 <!-- Optional JavaScript -->
