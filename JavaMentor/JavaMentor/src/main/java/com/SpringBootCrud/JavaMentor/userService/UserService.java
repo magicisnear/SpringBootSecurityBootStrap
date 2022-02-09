@@ -33,6 +33,7 @@ public class UserService {
     }
 
     public User saveUser(User user) {
+       // user.setRoles(Collections.singleton(new Role("ROLE_USER")));
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         return user;
