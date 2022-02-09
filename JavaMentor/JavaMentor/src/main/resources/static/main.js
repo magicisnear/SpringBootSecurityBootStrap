@@ -12,7 +12,6 @@ $('document').ready(function () {
             $('.myForm #lastName').val(user.lastName);
             $('.myForm #age').val(user.age);
             $('.myForm #email').val(user.email);
-            $('.myForm #password').val(user.password);
             $('.myForm #roles').val(user.roles);
         });
 
@@ -30,7 +29,6 @@ $('document').ready(function () {
             $('.myForm1 #lastName').val(user.lastName);
             $('.myForm1 #age').val(user.age);
             $('.myForm1 #email').val(user.email);
-            $('.myForm1 #password').val(user.password);
             $('.myForm1 #roles').val(user.roles);
         });
 
