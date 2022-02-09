@@ -54,7 +54,7 @@ public class AdminController {
         if (userFromDB == null) {
             userService.saveUser(user);
         }
-        return "redirect:/new";
+        return "redirect:/admin";
     }
 
     @GetMapping("/admin/delete/{id}")

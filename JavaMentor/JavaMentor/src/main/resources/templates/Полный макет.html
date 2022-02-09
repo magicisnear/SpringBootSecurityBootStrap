@@ -1,5 +1,5 @@
 <!doctype html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <html lang="en">
 <head>
     <!-- Required meta tags -->
@@ -14,6 +14,7 @@
 </head>
 <body>
 
+<div sec:authorize="hasRole('ROLE_ADMIN')">
 <div class="container-fluid">
     <div class="row">
         <div class="col">
@@ -50,6 +51,13 @@
                     </ul>
                 </div>
             </div>
+
+
+<!--            <div sec:authorize="hasRole('ROLE_ADMIN')">-->
+<!--                This content is only shown to administrators.-->
+<!--            </div>-->
+<!--            Logged user: <span sec:authentication="name">Bob</span>-->
+<!--            Roles: <span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span>-->
 
 
             <div class="col col-lg-10">
