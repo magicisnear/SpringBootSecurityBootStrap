@@ -18,21 +18,12 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Autowired
-    private RoleRepository roleRepository;
-
-    @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
     public User findByID(Long id) {
        return userRepository.findById(id).get();
     }
-
-
-    public List<User> findAll() {
-        return userRepository.findAll();
-    }
-
 
     @Transactional
     public User saveUser(User user) {
@@ -48,16 +39,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getAllUsersAndFetchRoles() {
-        return userRepository.findAll();
+        return userRepository.getAllUsersAndFetchRoles();
     }
 
-    public List<Role> listRoles() {
-        List<Role> roleList = roleRepository.findAll();
-        Set<Role> s = new LinkedHashSet<>(roleList);
-        roleList.clear();
-        roleList.addAll(s);
-        return roleList;
-    }
 
     @Transactional
     public void deleteById(Long id) {

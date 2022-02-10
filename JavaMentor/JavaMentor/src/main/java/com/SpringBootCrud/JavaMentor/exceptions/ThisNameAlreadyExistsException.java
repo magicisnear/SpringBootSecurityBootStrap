@@ -1,4 +1,4 @@
-package com.SpringBootCrud.JavaMentor.Exceptions;
+package com.SpringBootCrud.JavaMentor.exceptions;
 
 public class ThisNameAlreadyExistsException extends RuntimeException {
 

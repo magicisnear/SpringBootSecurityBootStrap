@@ -23,15 +23,14 @@ public class AdminController {
     @Autowired
     private RoleService roleService;
 
-    @GetMapping("/new")
+    @GetMapping("/")
     public String newPage(@AuthenticationPrincipal User user1, Model model) {
         List<User> users = userService.getAllUsersAndFetchRoles();
         model.addAttribute("users", users); // список юзеров
         model.addAttribute("user1", user1); // текущий авторизированный пользователь
         model.addAttribute("user2", new User()); // для формы добавления юзеров
-        List<Role> roles = roleService.getAll();
-        model.addAttribute("setRoles", roles); // для формы добавления юзеров
-        return "Полный макет";
+        model.addAttribute("setRoles", roleService.getAll()); // для формы добавления юзеров
+        return "MainPage";
     }
 
     @GetMapping("/admin")

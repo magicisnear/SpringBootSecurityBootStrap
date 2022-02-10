@@ -29,19 +29,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    @Autowired
-    private SimpleAuthenticationSuccessHandler successHandler;
-
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .csrf()
                 .disable()
                 .authorizeRequests()
+                .antMatchers("/").fullyAuthenticated()
                 .and()
-                .formLogin().successHandler(successHandler)
+                .formLogin()
                 .loginPage("/login")
                 .usernameParameter("name")
+                .defaultSuccessUrl("/")
+                .permitAll()
                 .and().logout().permitAll()
                 .logoutSuccessUrl("/login");
     }

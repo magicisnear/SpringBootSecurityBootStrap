@@ -1,6 +1,6 @@
 package com.SpringBootCrud.JavaMentor.controllers;
 
-import com.SpringBootCrud.JavaMentor.Exceptions.ThisNameAlreadyExistsException;
+import com.SpringBootCrud.JavaMentor.exceptions.ThisNameAlreadyExistsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
