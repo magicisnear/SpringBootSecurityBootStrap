@@ -1,4 +1,4 @@
-package com.SpringBootCrud.JavaMentor.secuirtyService;
+package com.SpringBootCrud.JavaMentor.secuirty.service;
 
 import com.SpringBootCrud.JavaMentor.model.User;
 import com.SpringBootCrud.JavaMentor.repository.UserRepository;
