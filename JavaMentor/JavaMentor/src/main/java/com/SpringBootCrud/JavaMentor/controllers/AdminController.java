@@ -1,5 +1,6 @@
 package com.SpringBootCrud.JavaMentor.controllers;
 
+import com.SpringBootCrud.JavaMentor.exceptions.ThisNameAlreadyExistsException;
 import com.SpringBootCrud.JavaMentor.model.Role;
 import com.SpringBootCrud.JavaMentor.repository.UserRepository;
 import com.SpringBootCrud.JavaMentor.service.RoleService;
@@ -25,7 +26,7 @@ public class AdminController {
 
     @GetMapping("/")
     public String newPage(@AuthenticationPrincipal User user1, Model model) {
-        List<User> users = userService.getAllUsersAndFetchRoles();
+        List<User> users = userService.getAllUsers();
         model.addAttribute("users", users); // список юзеров
         model.addAttribute("user1", user1); // текущий авторизированный пользователь
         model.addAttribute("user2", new User()); // для формы добавления юзеров
@@ -35,7 +36,7 @@ public class AdminController {
 
     @GetMapping("/admin")
     public String findAll(Model model) {
-        List<User> users = userService.getAllUsersAndFetchRoles();
+        List<User> users = userService.getAllUsers();
         model.addAttribute("users", users);
         return "admin-list";
     }
@@ -46,19 +47,19 @@ public class AdminController {
     }
 
     @PostMapping("/admin/create")
-    public String createUser(User user, Model model) {
-        model.addAttribute("user2", user);
-        User userFromDB = userService.findByName(user.getName());
-        if (userFromDB == null) {
-            userService.saveUser(user);
+    public String createUser(User user) throws ThisNameAlreadyExistsException {
+        if (userService.getAllUsers()
+                .contains((userService.findByName(user.getName())))) {
+            throw new ThisNameAlreadyExistsException();
         }
+        userService.saveUser(user);
         return "redirect:/admin";
     }
 
     @GetMapping("/admin/delete/{id}")
     public String deleteUser(@PathVariable("id") Long id) {
         userService.deleteById(id);
-        return "redirect:/new";
+        return "redirect:/";
     }
 
     @GetMapping("/admin/update/{id}")
@@ -73,7 +74,7 @@ public class AdminController {
     @PostMapping("/admin/update")
     public String updateUser(User user) {
         userService.saveUser(user);
-        return "redirect:/new";
+        return "redirect:/";
     }
 
     //add method for new Site
@@ -81,13 +82,13 @@ public class AdminController {
     @PostMapping("/admin/save")
     public String save(User user) {
         userService.saveUser(user);
-        return "redirect:/new";
+        return "redirect:/";
     }
 
     @PostMapping("/admin/delete")
     public String delete(Long id, Model model) {
         userService.deleteById(id);
-        return "redirect:/new";
+        return "redirect:/";
     }
 
     @GetMapping("/admin/findOne")

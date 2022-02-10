@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getAllUsersAndFetchRoles() {
+    public List<User> getAllUsers() {
         return userRepository.getAllUsersAndFetchRoles();
     }
 

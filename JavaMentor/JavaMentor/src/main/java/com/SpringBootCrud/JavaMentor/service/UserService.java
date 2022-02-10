@@ -5,9 +5,9 @@ import com.SpringBootCrud.JavaMentor.model.User;
 import java.util.List;
 
 public interface UserService {
-    public User findByID(Long id);
-    public List<User> getAllUsersAndFetchRoles();
-    public User saveUser(User user);
-    public User findByName(String name);
-    public void deleteById(Long id);
+ User findByID(Long id);
+ List<User> getAllUsers();
+ User saveUser(User user);
+ User findByName(String name);
+ void deleteById(Long id);
 }
