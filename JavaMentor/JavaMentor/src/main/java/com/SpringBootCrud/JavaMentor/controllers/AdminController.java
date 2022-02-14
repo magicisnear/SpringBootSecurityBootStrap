@@ -50,7 +50,7 @@ public class AdminController {
             throw new ThisNameAlreadyExistsException();
         }
         userService.saveUser(user);
-        return "redirect:/admin";
+        return "redirect:/";
     }
 
     @GetMapping("/admin/delete/{id}")
