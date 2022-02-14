@@ -1,6 +1,7 @@
 package com.SpringBootCrud.JavaMentor.controllers;
 
 import com.SpringBootCrud.JavaMentor.exceptions.ThisNameAlreadyExistsException;
+import com.SpringBootCrud.JavaMentor.exceptions.UserIdNotFoundException;
 import com.SpringBootCrud.JavaMentor.model.Role;
 import com.SpringBootCrud.JavaMentor.service.RoleService;
 import com.SpringBootCrud.JavaMentor.service.UserService;
@@ -12,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class AdminController {
@@ -24,8 +26,7 @@ public class AdminController {
 
     @GetMapping("/")
     public String newPage(@AuthenticationPrincipal User user1, Model model) {
-        List<User> users = userService.getAllUsers();
-        model.addAttribute("users", users); // список юзеров
+        model.addAttribute("users", userService.getAllUsers()); // список юзеров
         model.addAttribute("user1", user1); // текущий авторизированный пользователь
         model.addAttribute("user2", new User()); // для формы добавления юзеров
         model.addAttribute("setRoles", roleService.getAll()); // для формы добавления юзеров
@@ -34,8 +35,7 @@ public class AdminController {
 
     @GetMapping("/admin")
     public String findAll(Model model) {
-        List<User> users = userService.getAllUsers();
-        model.addAttribute("users", users);
+        model.addAttribute("users", userService.getAllUsers());
         return "admin-list";
     }
 
@@ -46,7 +46,7 @@ public class AdminController {
 
     @PostMapping("/admin/create")
     public String createUser(User user) throws ThisNameAlreadyExistsException {
-        if (userService.findByName(user.getName()) != null) {
+        if (userService.findByName(user.getName()).isPresent()) {
             throw new ThisNameAlreadyExistsException();
         }
         userService.saveUser(user);
@@ -61,10 +61,8 @@ public class AdminController {
 
     @GetMapping("/admin/update/{id}")
     public String updateUserForm(@PathVariable("id") Long id, Model model) {
-        User user = userService.findByID(id);
-        List<Role> setRoles = roleService.getAll();
-        model.addAttribute("user", user);
-        model.addAttribute("setRoles", setRoles);
+        model.addAttribute("user", userService.findByID(id));
+        model.addAttribute("setRoles", roleService.getAll());
         return "admin-update";
     }
 
@@ -78,6 +76,9 @@ public class AdminController {
 
     @PostMapping("/admin/save")
     public String save(User user) {
+        if (userService.findByName(user.getName()).isPresent()) {
+            throw new ThisNameAlreadyExistsException();
+        }
         userService.saveUser(user);
         return "redirect:/";
     }
@@ -90,7 +91,10 @@ public class AdminController {
 
     @GetMapping("/admin/findOne")
     @ResponseBody
-    public User findOne(Long id) {
+    public Optional<User> findOne(Long id) {
+        if(userService.findByID(id).isEmpty()) {
+            throw new UserIdNotFoundException();
+        }
         return userService.findByID(id);
 
     }
